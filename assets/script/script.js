@@ -3,6 +3,10 @@ let historyContainer = document.querySelector("history-container");
 let displayCharts = document.querySelector("display-charts");
 let input = document.querySelector("#input")
 let stockCounter=0;
+let xValues = [];
+let currentPriceValues = [];
+let dayOpenValues=[];
+let dayHighValues=[];
 
 //Sadegh Function
 
@@ -68,7 +72,16 @@ function makeStock(searchContent){
         stockContainer.appendChild(container)
     });
     stockCounter++;
+    xValues.push(searchContent);
+    currentPriceValues.push(currentPrice);
+    dayOpenValues.push(dayOpen);
+    dayHighValues.push(dayHigh);
+
+    //Call Graph functions with x values and respective y values
+
 }
+
+
 
 function replaceStock(searchContent){
     fetch('https://api.stockdata.org/v1/data/quote?symbols=AAPL&api_token=HfXDawpiXH7vBTzXXigj7jK4WMvzGEMcEV0F6Ssm')
@@ -105,6 +118,12 @@ function replaceStock(searchContent){
 
             let volume = data.data['0']['volume'];
             stocks[0].children[8].textContent=volume;
+
+            xValues[0]=searchContent;
+            currentPriceValues[0]=currentPrice;
+            dayOpenValues[0]=dayOpen;
+            dayHighValues[0]=dayHigh;
+            //Call Graph functions again
         }
         else if (stockCounter%3===1){
             let nameEl= data.data['0']['name'];
@@ -133,6 +152,12 @@ function replaceStock(searchContent){
 
             let volume = data.data['0']['volume'];
             stocks[1].children[8].textContent=volume;
+
+            xValues[1]=searchContent;
+            currentPriceValues[1]=currentPrice;
+            dayOpenValues[1]=dayOpen;
+            dayHighValues[1]=dayHigh;
+            // Call Graph functions
         }
         else{
             let nameEl= data.data['0']['name'];
@@ -161,6 +186,13 @@ function replaceStock(searchContent){
 
             let volume = data.data['0']['volume'];
             stocks[2].children[8].textContent=volume;
+
+            xValues[2]=searchContent;
+            currentPriceValues[2]=currentPrice;
+            dayOpenValues[2]=dayOpen;
+            dayHighValues[2]=dayHigh;
+
+            //Call Graph functions
         }
     });
     stockCounter++;
