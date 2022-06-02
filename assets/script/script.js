@@ -60,3 +60,28 @@ fetch('https://api.stockdata.org/v1/data/quote?symbols=AAPL&api_token=fLe0IWMWpZ
     stockContainer.appendChild(Vlume);
 
 });
+
+function launchModal(tickerName){
+    let url = "https://api.marketaux.com/v1/news/all?symbols="+tickerName+"&filter_entities=true&language=en&api_token=Y2d4RvCZU75JlG2keugvRhdhBHnOEwNPS37VqFVe";
+    fetch(url)
+        .then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+                let modalBody=document.querySelector(".modal-body");
+                let modalTitle=document.querySelector(".modal-title");
+                modalTitle.textContent="Breaking News for: "+data.data[0].entities[0].name;
+                //Gets 3 highlights, and adds the titles as HREFs to the actual papers
+                for (let i=0;i<data.data.length;i++){
+                    let link =document.createElement("a");
+                    link.setAttribute("href", data.data[i].url);
+                    link.textContent=(data.data[i].description);
+                }
+            });
+        } else {
+            console.log('Error: ' + response.statusText);
+        }
+        })
+        .catch(function (error) {
+        console.log("unable to connect to API")
+    });
+}
