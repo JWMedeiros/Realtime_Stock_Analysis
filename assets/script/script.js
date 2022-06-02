@@ -4,7 +4,7 @@ let displayCharts = document.querySelector("display-charts");
 let input = document.querySelector("#input")
 
 
-fetch('https://api.stockdata.org/v1/data/quote?symbols=AAPL&api_token=fLe0IWMWpZAATCc7dH3iWvjOMAt8dayRydHnT94V')
+fetch('https://api.stockdata.org/v1/data/quote?symbols=AAPL&api_token=HfXDawpiXH7vBTzXXigj7jK4WMvzGEMcEV0F6Ssm')
 .then(function(response){
     return response.json();
 })
