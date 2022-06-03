@@ -7,8 +7,43 @@ let xValues = [];
 let currentPriceValues = [];
 let dayOpenValues=[];
 let dayHighValues=[];
+let tname="";
+let tname2="";
+let tname3 ="";
+let current1 ="";
+let current2 ="";
+let current3 ="";
+let open1 ="";
+let open2 ="";
+let open3 ="";
+let high1 ="";
+let high2 ="";
+let high3 ="";
 
-//Sadegh Function
+let searchField = document.getElementById("inpKey")
+let submitBtn = document.getElementById ("submitBtn")
+const remove = document.getElementById("removeItem");
+const ul = document.getElementById("dynamic-list");
+const APIKEY = "fd2e05144199f31e5bf84141bbf6ec0c"
+
+searchField.addEventListener("keypress",function(event){
+    if (event.key === "Enter"){
+        event.preventDefault()
+        document.getElementById("submitBtn").click();
+       
+    }
+})
+submitBtn.addEventListener("click",function(){
+    let search = searchField.value
+    if(search.length > 0 ){
+            let li = document.createElement("li");
+            li.appendChild(document.createTextNode(search));
+            ul.appendChild(li);
+            searchField.value = ""
+            }
+    
+})
+
 
 function makeStock(searchContent){
     fetch('https://api.stockdata.org/v1/data/quote?symbols=AAPL&api_token=HfXDawpiXH7vBTzXXigj7jK4WMvzGEMcEV0F6Ssm')
@@ -77,8 +112,6 @@ function makeStock(searchContent){
     dayOpenValues.push(dayOpen);
     dayHighValues.push(dayHigh);
 
-    //Call Graph functions with x values and respective y values
-
 }
 
 
@@ -97,9 +130,11 @@ function replaceStock(searchContent){
 
             let ticker = data.data['0']['ticker'];
             stocks[0].children[1].textContent=ticker;
+            tname=ticker;
 
             let currentPrice = data.data['0']['price'];
             stocks[0].children[2].textContent=currentPrice;
+            current1=currentPrice;
 
             let currency =data.data['0']['currency'];
             stocks[0].children[3].textContent=currency;
@@ -109,9 +144,11 @@ function replaceStock(searchContent){
 
             let dayOpen =data.data['0']['day_open'];
             stocks[0].children[5].textContent=dayOpen;
+            open1=dayOpen;
 
             let dayHigh = data.data['0']['day_high'];
             stocks[0].children[6].textContent=dayHigh;
+            high1=dayHigh;
 
             let dayLow = data.data['0']['day_low'];
             stocks[0].children[7].textContent=dayLow;
@@ -123,7 +160,6 @@ function replaceStock(searchContent){
             currentPriceValues[0]=currentPrice;
             dayOpenValues[0]=dayOpen;
             dayHighValues[0]=dayHigh;
-            //Call Graph functions again
         }
         else if (stockCounter%3===1){
             let nameEl= data.data['0']['name'];
@@ -131,9 +167,11 @@ function replaceStock(searchContent){
 
             let ticker = data.data['0']['ticker'];
             stocks[1].children[1].textContent=ticker;
+            tname2=ticker;
 
             let currentPrice = data.data['0']['price'];
             stocks[1].children[2].textContent=currentPrice;
+            current2=currentPrice;
 
             let currency =data.data['0']['currency'];
             stocks[1].children[3].textContent=currency;
@@ -143,9 +181,11 @@ function replaceStock(searchContent){
 
             let dayOpen =data.data['0']['day_open'];
             stocks[1].children[5].textContent=dayOpen;
+            open2=dayOpen;
 
             let dayHigh = data.data['0']['day_high'];
             stocks[1].children[6].textContent=dayHigh;
+            high2=dayHigh;
 
             let dayLow = data.data['0']['day_low'];
             stocks[1].children[7].textContent=dayLow;
@@ -157,7 +197,6 @@ function replaceStock(searchContent){
             currentPriceValues[1]=currentPrice;
             dayOpenValues[1]=dayOpen;
             dayHighValues[1]=dayHigh;
-            // Call Graph functions
         }
         else{
             let nameEl= data.data['0']['name'];
@@ -165,9 +204,11 @@ function replaceStock(searchContent){
 
             let ticker = data.data['0']['ticker'];
             stocks[2].children[1].textContent=ticker;
+            tname3=ticker;
 
             let currentPrice = data.data['0']['price'];
             stocks[2].children[2].textContent=currentPrice;
+            current3=currentPrice;
 
             let currency =data.data['0']['currency'];
             stocks[2].children[3].textContent=currency;
@@ -177,9 +218,11 @@ function replaceStock(searchContent){
 
             let dayOpen =data.data['0']['day_open'];
             stocks[2].children[5].textContent=dayOpen;
+            open3=dayopen;
 
             let dayHigh = data.data['0']['day_high'];
             stocks[2].children[6].textContent=dayHigh;
+            high3=dayHigh
 
             let dayLow = data.data['0']['day_low'];
             stocks[2].children[7].textContent=dayLow;
@@ -191,8 +234,6 @@ function replaceStock(searchContent){
             currentPriceValues[2]=currentPrice;
             dayOpenValues[2]=dayOpen;
             dayHighValues[2]=dayHigh;
-
-            //Call Graph functions
         }
     });
     stockCounter++;
@@ -222,3 +263,65 @@ function launchModal(tickerName){
         console.log("unable to connect to API")
     });
 }
+
+function current(){
+    var xValues = [tname1, tname2, tname3];
+   var yValues = [current1,current2,current3];
+   var barColors = ["red", "green","blue"];
+
+   new Chart("current", {
+   type: "bar",
+   data: {
+      labels: xValues,
+      datasets: [{
+      backgroundColor: barColors,
+      data: yValues}]},
+   options: {
+      legend: {display: false},
+      title: {
+     display: true,
+     text: "Current price of Stocks"}}
+});}
+
+function open(){
+   var xValues = [tname1, tname2, tname3];
+   var yValues = [open1,open2,open3];
+   var barColors = ["red", "green","blue"];
+
+ new Chart("open", {
+   type: "bar",
+ data: {
+   labels: xValues,
+   datasets: [{
+   backgroundColor: barColors,
+   data: yValues}]},
+ options: {
+   legend: {display: false},
+   title: {
+   display: true,
+   text: "Opening prices of stocks"}}
+});}
+
+
+function high(){
+   var xValues = [tname1, tname2, tname3];
+   var yValues = [high1,high2,high3];
+   var barColors = ["red", "green","blue"];
+
+ new Chart("high", {
+   type: "bar",
+ data: {
+   labels: xValues,
+   datasets: [{
+   backgroundColor: barColors,
+   data: yValues}]},
+ options: {
+   legend: {display: false},
+   title: {
+   display: true,
+   text: "Day high prices"}}
+});}
+
+current()
+open()
+high()
