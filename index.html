@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="./assets/css/style.css" />
   <title>Realtime Stock Analysis</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 </head>
 
 <body class="flex-column min-100-vh">
@@ -36,7 +37,11 @@
     </section>
 
     <!--Container for Charts-->
-    <section id="display-charts"></section>
+    <section id="display-charts">
+        <canvas id="current" style="width:100%;max-width:400px"></canvas>
+        <canvas id="open" style="width:100%;max-width:400px"></canvas>
+        <canvas id="high" style="width:100%;max-width:400px"></canvas>
+    </section>
 
     <!--Add Modal Below (Bootstrap Modal)-->
     <!-- Button trigger modal -->
