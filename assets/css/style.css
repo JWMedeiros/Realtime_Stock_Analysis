@@ -3,3 +3,7 @@
     display: block;
     background-color: brown;
 }
+
+.hidden{
+    display: none;
+}
