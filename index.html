@@ -13,12 +13,26 @@
 
 <body class="flex-column min-100-vh">
     <!--Search Bar Area-->
-    <section id="search-bar">
-        <form>
-            <input/>
-        </form>
-        <section id="history-container"></section>
-    </section>
+    <div class="container" id="container">
+        <fieldset>
+            <legend class="title">Search Box</legend>
+            <input type="text" class="inpKey" id="inpKey" placeholder="Search!">
+            <button id="submitBtn">Submit</button>
+        </fieldset>
+    </div>
+
+    <fieldset>
+        <legend>
+            Search History
+        </legend>
+        
+        <div id="lsOutput">
+            <ul id="dynamic-list"></ul>
+        </div>
+    </fieldset>
+
+    <div id="container"></div>
+
 
     <!--Container for Stock Cards-->
     <section id="display-stocks">

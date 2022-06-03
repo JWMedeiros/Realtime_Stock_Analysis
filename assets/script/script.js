@@ -8,7 +8,30 @@ let currentPriceValues = [];
 let dayOpenValues=[];
 let dayHighValues=[];
 
-//Sadegh Function
+let searchField = document.getElementById("inpKey")
+let submitBtn = document.getElementById ("submitBtn")
+const remove = document.getElementById("removeItem");
+const ul = document.getElementById("dynamic-list");
+const APIKEY = "fd2e05144199f31e5bf84141bbf6ec0c"
+
+searchField.addEventListener("keypress",function(event){
+    if (event.key === "Enter"){
+        event.preventDefault()
+        document.getElementById("submitBtn").click();
+       
+    }
+})
+submitBtn.addEventListener("click",function(){
+    let search = searchField.value
+    if(search.length > 0 ){
+            let li = document.createElement("li");
+            li.appendChild(document.createTextNode(search));
+            ul.appendChild(li);
+            searchField.value = ""
+            }
+    
+})
+
 
 function makeStock(searchContent){
     fetch('https://api.stockdata.org/v1/data/quote?symbols=AAPL&api_token=HfXDawpiXH7vBTzXXigj7jK4WMvzGEMcEV0F6Ssm')
