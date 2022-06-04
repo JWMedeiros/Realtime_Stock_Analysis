@@ -8,6 +8,7 @@ let xValues = ["","",""];
 let currentPriceValues = ["","",""];
 let dayOpenValues=["","",""];
 let dayHighValues=["","",""];
+let searchHistory=[];
 let searchField = document.getElementById("inpKey")
 let submitBtn = document.getElementById ("submitBtn")
 const ul = document.getElementById("dynamic-list");
@@ -34,7 +35,8 @@ submitBtn.addEventListener("click",function(){
         ul.appendChild(btn);
         searchField.value = ""
 
-        //ADD LOCALSTORAGE FUNCTIONALITY BASED ON SEARCH PARAMS
+        console.log("search:"+search)
+        setHistory(search);
 
         //Call make/replaceStock with search params
         if (stockCounter<3){
@@ -45,6 +47,35 @@ submitBtn.addEventListener("click",function(){
         }
     }
 })
+
+function getHistory(){
+    searchHistory = JSON.parse(localStorage.getItem("Stonks"));
+    if (searchHistory===null){
+        localStorage.setItem("Stonks","[]")
+    }
+    else{
+        for (let i=0;i<searchHistory.length;i++){
+            let btn = document.createElement("button");
+            btn.classList.add("btn-dark","btn");
+            btn.textContent=searchHistory[i];
+            ul.appendChild(btn);
+            btn.addEventListener("click",function(){
+                if (stockCounter<3){
+                    makeStock(btn.textContent);
+                }
+                else{
+                    replaceStock(btn.textContent);
+                }
+            })
+        }
+    }
+}
+
+function setHistory(word){
+    console.log(word);
+    searchHistory.push(word);
+    localStorage.setItem("Stonks",JSON.stringify(searchHistory));
+}
 
 //Creates stock and stock data based off search params
 //Then updates graphs
@@ -113,6 +144,7 @@ function makeStock(searchContent){
         btn.textContent="Get Stock News";
         container.appendChild(btn);
         btn.addEventListener("click", function(){
+            console.log("Entered Function")
             launchModal(ticker);
             modalBtn.click();
         })
@@ -169,7 +201,15 @@ function replaceStock(searchContent){
 
             //Change button event listener to new ticker name
             let btn=stocks[0].children[9];
+            btn.removeEventListener("click", function(){
+                console.log("Entered Function")
+                launchModal(ticker);
+                modalBtn.click();
+            })
+            console.log("removed listener")
             btn.addEventListener("click", function(){
+                console.log("0th button Listener")
+                console.log(ticker)
                 launchModal(ticker);
                 modalBtn.click();
             })
@@ -213,7 +253,15 @@ function replaceStock(searchContent){
 
             //Change button event listener to new ticker name
             let btn=stocks[1].children[9];
+            btn.removeEventListener("click", function(){
+                console.log("Entered Function")
+                launchModal(ticker);
+                modalBtn.click();
+            })
+            console.log("removed listener")
             btn.addEventListener("click", function(){
+                console.log("1th button Listener")
+                console.log(ticker)
                 launchModal(ticker);
                 modalBtn.click();
             })
@@ -257,7 +305,15 @@ function replaceStock(searchContent){
 
             //Change button event listener to new ticker name
             let btn=stocks[2].children[9];
+            btn.removeEventListener("click", function(){
+                console.log("Entered Function")
+                launchModal(ticker);
+                modalBtn.click();
+            })
+            console.log("removed listener")
             btn.addEventListener("click", function(){
+                console.log("2th button Listener")
+                console.log(ticker)
                 launchModal(ticker);
                 modalBtn.click();
             })
@@ -286,10 +342,11 @@ function launchModal(tickerName){
                 modalTitle.textContent="Breaking News for: "+data.data[0].entities[0].name;
                 //Gets 3 highlights, and adds the titles as HREFs to the actual papers
                 for (let i=0;i<data.data.length;i++){
-                    let link =document.createElement("a");
+                    let link =modalBody.children[0].children[i];
                     link.setAttribute("href", data.data[i].url);
-                    link.textContent=(data.data[i].description);
+                    link.textContent=("Story "+(i+1)+": "+data.data[i].description);
                 }
+                console.log("Finished LaunchModal");
             });
         } else {
             console.log('Error: ' + response.statusText);
@@ -355,3 +412,4 @@ function high(xvals,yvals){
 current(xValues,currentPriceValues);
 open(xValues,dayOpenValues);
 high(xValues,dayHighValues);
+getHistory();

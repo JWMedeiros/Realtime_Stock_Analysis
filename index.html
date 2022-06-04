@@ -46,20 +46,26 @@
     </section>
 
     <!--Add Modal Below (Bootstrap Modal)--> 
-    <button type="button" class="btn btn-dark hidden" id="modalButton" data-bs-toggle="modal" data-bs-target="#newsModal"></button>
+    <button type="button" id="modalButton" class="btn-dark hidden" data-toggle="modal" data-target="#exampleModal">Launch modal</button>
     <!-- Modal -->
-    <div class="modal fade" id="newsModal" tabindex="-1" aria-labelledby="newsModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
             <h5 class="modal-title" id="newsModalLabel">Current News For: </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
             </div>
             <div class="modal-body">
-            SECOND API NEWS FOR CALL
+                <ul>
+                    <a></a>
+                    <a></a>
+                    <a></a>
+                </ul>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary btn-dark" data-dismiss="modal">Close</button>
             </div>
         </div>
         </div>
