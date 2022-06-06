@@ -30,7 +30,7 @@ submitBtn.addEventListener("click",function(){
         //ADD button CLick events
 
         let btn = document.createElement("button");
-        btn.classList.add("btn-dark","btn");
+        btn.classList.add("btn-dark","btn","searchbutton");
         btn.textContent=search
         ul.appendChild(btn);
         searchField.value = ""
@@ -56,7 +56,7 @@ function getHistory(){
     else{
         for (let i=0;i<searchHistory.length;i++){
             let btn = document.createElement("button");
-            btn.classList.add("btn-dark","btn");
+            btn.classList.add("btn-dark","btn", "searchbutton");
             btn.textContent=searchHistory[i];
             ul.appendChild(btn);
             btn.addEventListener("click",function(){
@@ -90,7 +90,7 @@ function makeStock(searchContent){
     .then(function(data){
         console.log(data);
         let container = document.createElement("section")
-        container.classList.add("stock","card");
+        container.classList.add("stock","card","col");
 
         let nameEl= data.data['0']['name'];
         let stname = document.createElement("h3");
@@ -358,7 +358,7 @@ function launchModal(tickerName){
 }
 
 function current(xvals,yvals){
-   let barColors = ["red", "green","blue"];
+   let barColors = ["yellow", "black","blue"];
 
    new Chart("current", {
    type: "bar",
@@ -375,7 +375,7 @@ function current(xvals,yvals){
 });}
 
 function open(xvals,yvals){
-   let barColors = ["red", "green","blue"];
+   let barColors = ["yellow", "black","blue"];
 
  new Chart("open", {
     type: "bar",
@@ -393,7 +393,7 @@ function open(xvals,yvals){
 
 
 function high(xvals,yvals){
-    let barColors = ["red", "green","blue"];
+    let barColors = ["yellow", "black","blue"];
 
     new Chart("high", {
         type: "bar",
@@ -406,7 +406,8 @@ function high(xvals,yvals){
                     legend: {display: false},
                     title: {
                         display: true,
-                        text: "Day high prices"}}
+                        text: "Day high prices"},
+                        fontColor: "green"}
 });}
 
 current(xValues,currentPriceValues);
