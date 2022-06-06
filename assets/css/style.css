@@ -149,11 +149,21 @@ h3{
     right:20px
 }
 
+#lsOutput{
+  position: relative;
+  right: 12px;
+}
+
 .col-8{
     background:url("./buySell.jpg");
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
+}
+
+#searchField{
+  position: relative;
+  left: 5px;
 }
 
 #display-charts{
