@@ -13,7 +13,7 @@ Live news about stocks and search results for stock prices etc.
 
 ## Table of contents
 
--installation
+Installation:
 -Download and install Git bash
 -Open your Git bash application
 -Type in command mkdir Real Time Stock Analysis
@@ -28,11 +28,17 @@ John Medeiros, Sachmilan Singh Gangarh , Sadegh Mahboobifar.
 
 To seacrh for a stock in this application, all you need to do is to type in the ticker name and then hit search. To look for the highlights, click on the botton called "updates", and you can futher search the news, by clicking on the highlight.
 
+Fully Deployed application link: https://jwmedeiros.github.io/Realtime_Stock_Analysis/
+
 ## license
 
 Open software license
 
-![alt text](link for screenshot)
+![image](https://user-images.githubusercontent.com/44784107/172193279-354efde6-b45b-4434-ba7f-7c360c90ed76.png)
+
+![image](https://user-images.githubusercontent.com/44784107/172193427-928d90b8-920e-43c2-8c60-3b4965db4c50.png)
+
+
 
 ## Features
 
