@@ -13,6 +13,13 @@ let searchField = document.getElementById("inpKey")
 let submitBtn = document.getElementById ("submitBtn")
 const ul = document.getElementById("dynamic-list");
 
+current(xValues,currentPriceValues);
+open(xValues,dayOpenValues);
+high(xValues,dayHighValues);
+console.log(searchHistory)
+console.log(typeof(searchHistory))
+getHistory();
+
 //If enter is pressed, activate the search button click function
 searchField.addEventListener("keypress",function(event){
     if (event.key === "Enter"){
@@ -26,8 +33,6 @@ submitBtn.addEventListener("click",function(){
     let search = searchField.value
     if(search.length > 0 ){
         //Create button, change text content, append to search container
-
-        //ADD button CLick events
 
         let btn = document.createElement("button");
         btn.classList.add("btn-dark","btn","searchbutton");
@@ -72,9 +77,15 @@ function getHistory(){
 }
 
 function setHistory(word){
-    console.log(word);
-    searchHistory.push(word);
-    localStorage.setItem("Stonks",JSON.stringify(searchHistory));
+    if (searchHistory!==null){
+        searchHistory.push(word);
+        localStorage.setItem("Stonks",JSON.stringify(searchHistory));
+    }
+    else {
+        getHistory();
+        searchHistory.push(word);
+        localStorage.setItem("Stonks",JSON.stringify(searchHistory));
+    }
 }
 
 //Creates stock and stock data based off search params
@@ -409,8 +420,3 @@ function high(xvals,yvals){
                         text: "Day high prices"},
                         fontColor: "green"}
 });}
-
-current(xValues,currentPriceValues);
-open(xValues,dayOpenValues);
-high(xValues,dayHighValues);
-getHistory();

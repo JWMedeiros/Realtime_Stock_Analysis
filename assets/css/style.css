@@ -150,13 +150,14 @@ h3{
 }
 
 .col-8{
-    background:url(https://img.freepik.com/free-vector/buy-sell-concept-design-showing-bull-bear_1017-13716.jpg?t=st=1654464933~exp=1654465533~hmac=ed40649fce5a1e8b7a666bf468983d24e9c22bb5d663f897b5db27ca019e6056&w=740);
+    background:url("./buySell.jpg");
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
 }
 
 #display-charts{
+    margin-top: 200px;
     z-index: +1;
 }
 
